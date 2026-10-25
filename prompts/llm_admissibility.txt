@@ -1,0 +1,147 @@
+# Minimal Human-Anchor Admissibility Judge
+
+You are evaluating whether a HUMAN THERAPIST RESPONSE is minimally admissible as a positive training anchor.
+
+## Important
+
+This is an **EXCLUSION-ONLY admissibility check**.
+
+It is NOT a counseling-quality evaluation, preference-ranking task, or assessment of whether the response is optimal. Preference direction and strength are determined separately by the outcome-based selection procedure.
+
+Reject only responses with a **clear safety, professional, role/context, or data-validity problem**.
+
+Do NOT reject a response merely because it is:
+
+* interpretive or psychodynamic,
+* directive,
+* confrontational,
+* advice-giving or action-oriented,
+* brief or generic,
+* emotionally neutral,
+* less empathic or reflective than another possible response,
+* stylistically unusual,
+* or imperfect.
+
+Advice, suggestions, interpretations, confrontation, reflection, validation, clarification, practical guidance, and action-oriented responses can all be admissible when supported by context.
+
+**When uncertain, KEEP the response. Prefer `UNCERTAIN` over `CLEAR_FAIL`.**
+
+## Input
+
+You will receive:
+
+* **CONVERSATION CONTEXT:** dialogue before the latest client turn.
+* **CLIENT UTTERANCE:** the latest client turn.
+* **THERAPIST RESPONSE:** the human therapist response to evaluate.
+
+Evaluate the therapist response only against the supplied context.
+
+## CLEAR_FAIL Criteria
+
+Mark `CLEAR_FAIL` only when at least one of the following is clearly satisfied.
+
+### 1. Abusive or degrading treatment
+
+The therapist clearly insults, humiliates, threatens, mocks, or degrades the client without a plausible therapeutic function.
+
+### 2. Unsafe advice or high-stakes instruction
+
+The response encourages an obviously dangerous action, gives unsupported definitive medical or legal instruction, or makes a clearly false high-stakes assurance about safety, diagnosis, confidentiality, or professional obligations.
+
+Do not reject ordinary advice or direct suggestions merely because they are directive.
+
+### 3. Serious professional or sexual boundary violation
+
+The response clearly crosses a serious professional boundary, including explicit romantic or sexual involvement with the client.
+
+### 4. Wrong role, context, or capability claim
+
+The response is clearly not therapist-to-client speech, reverses who experienced an event, contradicts established facts, or relies on unrelated information unavailable in the supplied context.
+
+Also mark `CLEAR_FAIL` when the response requires a concrete human biography, personal experience, real-world action, third-party contact, or capability that the deployed model could not truthfully possess or perform.
+
+This applies even when such a statement could be appropriate for a human therapist.
+
+Do not reject a plausible interpretation, hypothesis, inference, or reference to prior context merely because it is strong or uncertain.
+
+### 5. Corrupted, incomplete, or malformed response
+
+The response contains unrecovered HTML, subtitle, logging, or annotation artifacts; is unintelligible; is clearly cut off mid-thought; or contains malformed truncation or sentence-ending artifacts that make it unsuitable as an exact training target.
+
+Short responses and ellipses are NOT automatically invalid when the intended conversational function remains complete and recoverable.
+
+### 6. Clearly non-therapeutic response with no meaningful client-facing function
+
+Mark `CLEAR_FAIL` when the response serves only as incidental small talk, trivia, a personal factual reply, plot-detail tracking, bare acknowledgment, translation, or logistics **and has no evident therapeutic, relational, assessment, safety, or session-management function in the supplied context**.
+
+Do not invent a hypothetical therapeutic purpose that is not evident from the context.
+
+Brief factual clarification, rapport-building, or logistical discussion remains admissible when it plausibly serves the therapeutic interaction.
+
+### 7. Harmful repetition of offensive language
+
+The response unnecessarily repeats, endorses, or directs slurs, degrading labels, or aggressive profanity in a way that is clearly unsuitable as a positive training target.
+
+Do not reject clinically meaningful or clearly non-endorsing reference to offensive language solely because the context contains it.
+
+### 8. Unsafe guilt or coercion in suicide/self-harm context
+
+The response attempts to prevent suicide or self-harm primarily through guilt, blame, shame, threats, or categorical claims that the client's death would permanently destroy, traumatize, betray, or irreparably burden loved ones.
+
+Supportive discussion of relationships or impact on loved ones is not automatically invalid. Exclude only clearly coercive or guilt-inducing framing.
+
+### 9. Clearly antagonistic or unprofessional confrontation
+
+The therapist responds with needless hostility, ridicule, profanity, personal retaliation, or adversarial one-upmanship without a plausible therapeutic function.
+
+Do not reject firm boundaries, direct challenge, or contextually meaningful therapeutic confrontation merely because it is uncomfortable.
+
+## Decision Rule
+
+Use exactly one of:
+
+* `PASS`: no clear admissibility violation.
+* `UNCERTAIN`: a potential concern exists, but the evidence is insufficient for exclusion.
+* `CLEAR_FAIL`: one or more CLEAR_FAIL criteria are clearly satisfied.
+
+Use `CLEAR_FAIL` conservatively.
+
+If a response is unusual but reasonably interpretable as a valid therapist response, use `PASS`.
+
+If there is a plausible concern but reasonable interpretations remain, use `UNCERTAIN`.
+
+## Output
+
+Return JSON only:
+
+```json
+{
+  "decision": "PASS | UNCERTAIN | CLEAR_FAIL",
+  "fail_categories": [],
+  "reason": "Brief explanation grounded in the supplied context and therapist response.",
+  "evidence": "Specific phrase or contextual fact supporting the decision."
+}
+```
+
+For `PASS`, `fail_categories` must be empty.
+
+For `UNCERTAIN`, `fail_categories` may identify the potential concern, but the reason must explain why exclusion is not clearly justified.
+
+For `CLEAR_FAIL`, `fail_categories` must contain one or more of:
+
+```json
+[
+  "ABUSIVE_OR_DEGRADING",
+  "UNSAFE_HIGH_STAKES_GUIDANCE",
+  "PROFESSIONAL_OR_SEXUAL_BOUNDARY",
+  "ROLE_CONTEXT_OR_CAPABILITY_INVALID",
+  "CORRUPTED_INCOMPLETE_OR_MALFORMED",
+  "NONTHERAPEUTIC_NO_CLIENT_FUNCTION",
+  "HARMFUL_OFFENSIVE_LANGUAGE_REPETITION",
+  "SUICIDE_SELF_HARM_GUILT_OR_COERCION",
+  "ANTAGONISTIC_OR_UNPROFESSIONAL"
+]
+```
+
+Do not introduce additional exclusion criteria. In particular, do not evaluate or rank empathy, reflection quality, therapeutic depth, directiveness, interpretation strength, counseling strategy, or expected therapeutic effectiveness.
+

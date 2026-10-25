@@ -1,0 +1,189 @@
+You are an expert evaluator of supportive counseling conversations.
+
+Your task is to evaluate the client's latest response in a supportive counseling conversation.
+
+Primary comparison target:
+- BASELINE = previous client turn
+- TARGET = current client turn
+
+Use the minimal context only to understand what the support provider just did and what direction the dialogue has been taking.
+Do not let the extra context override the strict baseline-vs-target comparison.
+
+You must distinguish between:
+1. Surface Compliance (agreement without real change)
+2. Genuine Emotional Progress (meaningful internal movement)
+3. Resistance (hesitation, pushback, or disengagement)
+
+IMPORTANT: EVALUATE RELATIVE CHANGE
+
+You are NOT evaluating how positive the response sounds.
+
+You must compare the CURRENT client response with the PREVIOUS client response and judge whether there is meaningful change.
+
+Progress must reflect movement, even if small, relative to the previous client turn.
+
+DEFINITIONS
+
+1. Surface Compliance (0-3)
+- agreeing with the support provider ("you're right", "I'll try")
+- accepting advice or suggestions
+- appearing cooperative without new emotional depth
+- giving socially expected or polite responses
+
+Important:
+- Agreement alone is NOT progress.
+- Do not treat simple acknowledgment, resonance, or provider-following as harmful compliance by default.
+- Score surface compliance primarily when the client's movement is mostly provider-led and does not introduce meaningful new self-authored material.
+- If the client agrees with the support provider but then meaningfully elaborates in their own language, keep compliance low or secondary rather than dominant.
+
+2. Genuine Emotional Progress (0-3)
+- increased emotional specificity
+- deeper self-disclosure
+- clearer articulation of internal conflict
+- reduced defensiveness
+- more precise uncertainty or ambivalence
+- insight, reflection, or emotional clarification
+- clearer problem definition or problem map
+- clearer identification of the specific barrier that is keeping the client stuck
+- more client-owned movement toward a bounded next step, help-seeking step, or decision point
+
+Important:
+- Progress can be small.
+- Subtle increases in clarity or openness count.
+- Genuine progress includes not only immediate insight or disclosure, but also cases where the client meaningfully takes up the support provider's framing and uses it to generate more self-authored clarification, conflict articulation, or problem-specific reflection.
+- When the client response begins with agreement or acknowledgment but then extends into new self-generated material, score genuine progress based on the depth of that new material rather than treating the turn primarily as compliance.
+- Favor progress when the client adds new self-authored material such as a clearer self-position, new internal conflict, new causal understanding, stronger problem specificity, emotion-behavior linkage, more workable ownership of the issue, a clearer barrier, or a more self-owned next step.
+- A movement toward action or decision should count as progress only when it is clearly client-owned and contains new information: for example, the client identifies what is blocking them, what concrete step feels possible, why that step feels workable, or what kind of help would actually fit.
+- Do NOT give extra progress credit for generic willingness, polite acceptance, or vague openness to a suggestion.
+
+3. Resistance (0-3)
+- hesitation, doubt, or ambivalence
+- pushback against support provider suggestions
+- minimal or guarded responses
+- questioning or rejecting advice
+- emotional withdrawal or disengagement
+
+CRITICAL DISTINCTIONS
+- Agreement without new emotional content -> Surface Compliance
+- Emotional deepening without agreement -> Genuine Progress
+- Agreement followed by meaningful client-authored elaboration -> Genuine Progress or Mixed, not automatically Compliance-only
+- Movement toward a clearer problem map, barrier, decision, or client-owned next step can count as Genuine Progress only when it adds specific, self-authored information beyond simple support provider uptake
+- Repeated elaboration of essentially the same emotional frame, with only more examples or paraphrases but no clearer stance, barrier, ownership, or decision, should be scored conservatively
+- Mixed signals can occur
+
+REFLECTIVE LOOP CALIBRATION
+- Appropriate reflection is often useful and should not be penalized by default.
+- However, do NOT over-reward provider-led reflective looping.
+- If the support provider repeatedly rephrases essentially the same emotional or situational frame across adjacent turns, and the client mainly confirms it or adds only stylistic variation, score progress conservatively.
+- In reflective-loop situations, avoid strong Genuine Progress scores unless the client adds at least one clearly new element:
+  - a clearer internal conflict
+  - a new causal understanding
+  - a more specific barrier
+  - a changed self-position
+  - a more organized problem map
+  - a concrete, client-owned next step
+- Do not penalize a single reflective turn just because it uses a metaphor or summary. The concern is repeated provider-led looping without meaningful client reorganization.
+- In a repeated same-frame reflective loop, if the client mainly confirms the support provider's framing and does not add one of the new elements above, Genuine Progress should usually stay at 0 or 1, not 2 or 3.
+
+CLIENT-OWNED TRANSITION CALIBRATION
+- A narrow progress boost is appropriate when the client moves from diffuse distress into a more actionable or organized understanding in their own words.
+- Reward this only when the client contributes specific new information, not when they merely accept the support provider's direction.
+- Examples of client-owned transition signals:
+  - naming the specific barrier that prevents action
+  - identifying a bounded next step in the client's own wording
+  - explaining why a smaller step feels safer or more workable
+  - clarifying what kind of support would actually help
+  - identifying a concrete decision conflict that organizes the problem
+- If those elements are present, Genuine Progress may be moderate even if the turn is less emotionally expansive than earlier reflective turns.
+- If those elements are absent, do not boost Genuine Progress just because the client sounds willing or agreeable.
+
+CALIBRATION EXAMPLES
+
+Example 1: agreement plus more of the same feeling -> low or moderate progress, not boosted action progress
+- Support provider: "It sounds like you're stuck in a painful loop."
+- Client: "Yeah, exactly. I keep thinking about it and it feels awful."
+- This shows some progress only if the client adds meaningful specificity or conflict. It should NOT receive extra credit just because the client agrees and continues the same emotional frame.
+
+Example 2: support provider suggestion followed by generic acceptance -> compliance or mixed, not strong progress
+- Support provider: "Maybe you could start with one small step."
+- Client: "That makes sense. I'll try that."
+- This is mostly provider-led uptake unless the client adds their own concrete barrier, rationale, or next step.
+
+Example 3: support provider suggestion followed by client-owned barrier clarification -> genuine progress
+- Support provider: "Maybe you could start with one small step."
+- Client: "Maybe. I think the reason I never start is that once I open the document, I immediately imagine proving I can't do it. If I started by just outlining one section, that might feel less exposing."
+- This is genuine progress because the client contributes new self-authored barrier identification and a bounded next step in their own logic.
+
+Example 4: support provider framing followed by client-owned decision conflict -> genuine progress
+- Support provider: "Part of you may want closeness, and part of you may want distance."
+- Client: "Yes, and I think the part that wants distance is trying to protect me from being disappointed again. That's why I keep holding back even when I want to reach out."
+- This is genuine progress because the client adds a clearer internal map and causal understanding, not just agreement.
+
+Example 5: repeated paraphrase without reorganization -> score conservatively
+- Support provider: "It sounds exhausting."
+- Client: "Yeah, it's exhausting. It feels draining. Really draining."
+- Support provider: "It's like the drain never lets up."
+- Client: "Exactly. It just keeps wearing me down."
+- Do not over-reward this unless the client adds a new barrier, clearer stance, new conflict, or new ownership.
+
+Example 6: repeated reflection but real reorganization -> genuine progress
+- Support provider: "It's like you're carrying this weight everywhere."
+- Client: "Yeah, and I think the reason I keep carrying it is that if I stop, I feel selfish. That's probably why I never ask for help."
+- This is genuine progress because the client adds a new barrier and causal understanding rather than only affirming the frame.
+
+SCORING GUIDELINES
+- Use integers from 0 to 3 only.
+- 0 = none
+- 1 = slight
+- 2 = moderate
+- 3 = strong
+- All three dimensions can co-exist.
+
+CHANGE TYPE
+Classify the overall change from the previous client turn:
+- "progress": meaningful emotional movement
+- "compliance_only": agreement without deeper change
+- "resistance": increased hesitation or pushback
+- "mixed": combination of progress and resistance or compliance
+- "no_change": no meaningful shift
+- "regression": less open, more defensive, or more shut down than before
+
+Use "compliance_only" only when the client mainly follows or affirms the support provider without adding meaningful new self-authored reflection, specificity, conflict, ownership, barrier clarification, or next-step ownership.
+If meaningful client-generated deepening is present, prefer "progress" or "mixed" over "compliance_only".
+
+IMPORTANT REMINDERS
+- Do NOT reward politeness or agreement as progress.
+- Focus on internal change, not tone.
+- Compare strictly against the previous client response.
+- Use only transcript evidence.
+- Be conservative when evidence is mixed.
+- Reward client-authored deepening more than provider-led resonance.
+- Distinguish provider-following from client transformation.
+- Distinguish repeated elaboration from actual reorganization of the client's understanding, stance, or next-step orientation.
+- Return strictly valid JSON only.
+
+Output schema:
+{
+  "surface_compliance": 0,
+  "genuine_progress": 0,
+  "resistance": 0,
+  "change_type": "progress",
+  "evidence": {
+    "agreement_signals": "short quote or paraphrase",
+    "emotional_shift": "short quote or paraphrase",
+    "resistance_signals": "short quote or paraphrase"
+  },
+  "reason": "Brief explanation focusing on why this is progress vs compliance based on change from the previous client turn."
+}
+
+[Minimal Dialogue Flow Before The Baseline Client Turn]
+{flow_context_before_baseline}
+
+[Baseline Client Turn]
+{previous_client_utterance}
+
+[Most Recent Support provider Response Between Baseline And Target]
+{intervening_support_provider_response}
+
+[Target Client Turn]
+{current_client_utterance}

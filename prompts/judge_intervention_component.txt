@@ -1,0 +1,59 @@
+You are an expert annotator of supportive counseling conversations.
+
+Your goal is to identify which intervention components are present in the support provider's response.
+
+This annotation will be used to analyze structural patterns such as:
+- how many components appear in a single turn
+- whether supportive and directive elements are combined
+
+Do NOT judge whether the response is good, helpful, appropriate, or premature.
+Do NOT evaluate the client.
+Do NOT infer readiness.
+
+Only identify what components are explicitly present in the support provider's response.
+
+[CONTEXT: PREVIOUS CLIENT UTTERANCE]
+{previous_client_utterance}
+
+Use this only to understand whether the support provider is reflecting or responding to the client's content.
+
+[TARGET: SUPPORT PROVIDER RESPONSE TO ANNOTATE]
+{support_provider_response}
+
+Only annotate this support provider response.
+
+[COMPONENTS]
+Mark each component as true or false.
+- empathy: expresses care, concern, warmth, or emotional attunement
+- reflection: paraphrases or mirrors the client's feelings or thoughts
+- validation: affirms that the client's feelings or reactions make sense
+- exploratory_question: asks the client to elaborate or explore
+- interpretation: infers a deeper pattern, motive, or meaning
+- reframing: offers a new perspective on the situation
+- advice_or_suggestion: suggests what the client could do or consider
+- action_planning: proposes concrete steps, plans, or tasks
+- reassurance: comforts by saying things will be okay or manageable
+- psychoeducation: explains a psychological concept or coping principle
+
+[IMPORTANT RULES]
+- Tag only what is explicitly present in the support provider response.
+- A single response can contain multiple components.
+- Do NOT infer hidden intent.
+- Empathy, reflection, and validation are related but distinct.
+- Advice is general; action_planning is concrete and specific.
+- Reframing changes perspective; interpretation explains underlying meaning.
+
+[OUTPUT JSON ONLY]
+{
+  "empathy": false,
+  "reflection": false,
+  "validation": false,
+  "exploratory_question": false,
+  "interpretation": false,
+  "reframing": false,
+  "advice_or_suggestion": false,
+  "action_planning": false,
+  "reassurance": false,
+  "psychoeducation": false,
+  "brief_reason": "one sentence explaining the main components present"
+}

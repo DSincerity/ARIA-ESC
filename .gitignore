@@ -1,0 +1,14 @@
+__pycache__/
+*.egg-info/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+outputs/
+checkpoints/
+wandb/
+*.log
+.env
+*.key
+*.pem
